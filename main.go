@@ -126,4 +126,4 @@ func main() {
 	fmt.Printf("Starting Server at port 8000\n")
 	log.Fatal(http.ListenAndServe(":8000", r))
 
-} //makefile,docker,cubernate,aws
+} //makefile,docker,cubernate,aws,etc
