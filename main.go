@@ -9,7 +9,7 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"github.com/rs/cors"
+	//"github.com/rs/cors"
 )
 
 type Movie struct {
@@ -26,21 +26,6 @@ type Director struct {
 
 var movies []Movie
 
-func swagger(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	http.ServeFile(w, r, "swagger.json")
-}
-
-func index(w http.ResponseWriter, r *http.Request) {
-	log.Println("Responsing to /hello request")
-	log.Println(r.UserAgent())
-
-	vars := mux.Vars(r)
-	name := vars["name"]
-
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "Hello:", name)
-}
 
 func getMovies(w http.ResponseWriter, r *http.Request) {
 	//converting json to its own format
@@ -104,14 +89,6 @@ func updateMovie(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func main() {
-	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/hello/{name}", index).Methods("GET")
-	router.HandleFunc("/swagger.json", swagger).Methods("GET")
-
-	handler := cors.Default().Handler(router)
-
-	log.Fatal(http.ListenAndServe(":8080", handler))
-
 	r := mux.NewRouter() //used to create a router instance
 
 	movies = append(movies, Movie{ID: "1", Isbn: "831004", Title: "Movie One", Director: &Director{Firstname: "Anurag", Lastname: "Kashyap"}})
