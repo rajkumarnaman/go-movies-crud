@@ -26,7 +26,6 @@ type Director struct {
 
 var movies []Movie
 
-
 func getMovies(w http.ResponseWriter, r *http.Request) {
 	//converting json to its own format
 	w.Header().Set("Content-Type", "application/json")
@@ -103,4 +102,4 @@ func main() {
 	fmt.Printf("Starting Server at port 8000\n")
 	log.Fatal(http.ListenAndServe(":8000", r))
 
-} //makefile,docker,cubernate,aws,etc
+} //makefile,docker,cubernate,aws,etc,pull
